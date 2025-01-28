@@ -1,0 +1,12 @@
+model_name = "ProsusAI/finbert"
+dataset_id = "dair-ai/emotion"
+num_labeles = 6
+output_dir = "./model_output"
+dataset_dir = "./data"
+wandb_project = "TextClassifier"
+seed = 123
+learning_rate = 2e-5
+batch_size = 64
+num_train_epochs = 10
+warmup_ratio = 0.1
+early_stopping_patience = 3
