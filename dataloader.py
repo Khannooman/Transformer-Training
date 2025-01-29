@@ -86,9 +86,7 @@ class DataModule:
                 loader = DataLoader(
                     dataset,
                     batch_size = self.config.batch_size,
-                    shuffle = split == 'train',
-                    num_workers = self.config.num_workers,
-                    multiprocessing_context="spawn"
+                    shuffle = split == 'train'
                 )
                 loaders.append(loader)
                 logger.info("Succedully created dataloader")

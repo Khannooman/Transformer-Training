@@ -1,0 +1,7 @@
+{"time":"2025-01-30T00:09:58.134735155+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/nooman/Documents/Transformer-Training/wandb/run-20250130_000957-hpjb3p5l/logs/debug-core.log"}
+{"time":"2025-01-30T00:09:59.751321939+05:30","level":"INFO","msg":"created new stream","id":"hpjb3p5l"}
+{"time":"2025-01-30T00:09:59.751534111+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"hpjb3p5l"}
+{"time":"2025-01-30T00:09:59.751549245+05:30","level":"INFO","msg":"stream: started","id":"hpjb3p5l"}
+{"time":"2025-01-30T00:09:59.751538622+05:30","level":"INFO","msg":"handler: started","stream_id":"hpjb3p5l"}
+{"time":"2025-01-30T00:09:59.751575584+05:30","level":"INFO","msg":"sender: started","stream_id":"hpjb3p5l"}
+{"time":"2025-01-30T00:10:00.266369871+05:30","level":"INFO","msg":"Starting system monitor"}

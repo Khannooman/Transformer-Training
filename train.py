@@ -28,7 +28,7 @@ class Trainer(nn.Module):
         super().__init__()
         self.config = config
         self.device = torch.device(self.config.device)
-        self.model = load_model()
+        self.model = load_model().to(self.device)
         logger.info(f"Using device: {self.device}")
 
     def _setup_optimizer(self) -> torch.optim.Optimizer:
@@ -108,6 +108,7 @@ class Trainer(nn.Module):
         optimizer = self._setup_optimizer()
         num_training_steps = len(train_loader) * self.config.epochs
         schedular = self._setup_schedular(optimizer, num_training_steps)
+        criterion = nn.CrossEntropyLoss()
 
         if self.config.use_wandb:
             wandb.init(
@@ -130,18 +131,15 @@ class Trainer(nn.Module):
             progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1} / {self.config.epochs}")
 
             for batch in progress_bar:
-                print(batch["input_ids"])
-                batch = {
-                        k: v for k, v in batch.items()
-                }
-                print(batch["input_ids"])
-
+                batch = {k: torch.stack(v).to(self.device) if not isinstance(v, torch.Tensor)
+                         else v
+                         for k, v in batch.items()}
+                batch["labels"] = batch["label"]
                 del batch['label']
 
                 optimizer.zero_grad()
                 outputs = self.model(**batch)
                 loss = outputs.loss
-
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.config.max_grad_norm)
 
@@ -195,24 +193,21 @@ class Trainer(nn.Module):
 
         with torch.no_grad():
             for batch in val_loader:
-                batch = {
-                        k: v.clone().detach().to(self.device) if isinstance(v, torch.Tensor)
-                        else torch.tensor(v, dtype=torch.long, device=self.device)
-                        if isinstance(v, (list, np.ndarray)) and all(isinstance(i, int) for i in v)
-                        else v  # Keep as-is if not convertible
-                        for k, v in batch.items()
-                }
+                batch = {k: torch.stack(v).to(self.device) if not isinstance(v, torch.Tensor)
+                         else v
+                         for k, v in batch.items()}
                 
-                label = batch["label"]
+                batch["labels"] = batch["label"]
                 del batch["label"]
+                
                 outputs = self.model(**batch)
                 loss = outputs.loss
 
                 val_loss += loss.item()
 
                 prediction = torch.argmax(outputs.logits, dim=1)
-                correct_predictions += (label == prediction).sum().item()
-                total_predictions += label.size(0)
+                correct_predictions += (batch["labels"] == prediction).sum().item()
+                total_predictions += batch["labels"].size(0)
 
         avg_val_loss = val_loss / len(val_loader)
         accuracy = correct_predictions / total_predictions

@@ -1,0 +1,28 @@
+Epoch 1 / 10:   0%|                                                         | 0/1000 [00:01<?, ?it/s]
+tensor([3, 2, 0, 0, 1, 1, 5, 0, 0, 0, 0, 0, 1, 2, 0, 5])
+Traceback (most recent call last):
+  File "/home/nooman/Documents/Transformer-Training/training.py", line 23, in <module>
+    setup_training(data_dir, config)
+  File "/home/nooman/Documents/Transformer-Training/training.py", line 16, in setup_training
+    trainer.train(train_loader, val_loader)
+  File "/home/nooman/Documents/Transformer-Training/train.py", line 142, in train
+    outputs = self.model(**batch)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 1680, in forward
+    logits = self.classifier(pooled_output)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nooman/Documents/Transformer-Training/env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (128x768 and 1024x1024)

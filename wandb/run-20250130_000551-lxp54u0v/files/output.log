@@ -1,0 +1,9 @@
+Epoch 1 / 10:   0%|                                                         | 0/1000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/nooman/Documents/Transformer-Training/training.py", line 23, in <module>
+    setup_training(data_dir, config)
+  File "/home/nooman/Documents/Transformer-Training/training.py", line 16, in setup_training
+    trainer.train(train_loader, val_loader)
+  File "/home/nooman/Documents/Transformer-Training/train.py", line 144, in train
+    loss.backward()
+AttributeError: 'NoneType' object has no attribute 'backward'

@@ -1,0 +1,15 @@
+{"time":"2025-01-29T23:43:50.046177692+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/nooman/Documents/Transformer-Training/wandb/run-20250129_234349-xm6os1x3/logs/debug-core.log"}
+{"time":"2025-01-29T23:43:50.152020714+05:30","level":"INFO","msg":"created new stream","id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:50.152055554+05:30","level":"INFO","msg":"stream: started","id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:50.152124742+05:30","level":"INFO","msg":"handler: started","stream_id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:50.152124747+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:50.152182735+05:30","level":"INFO","msg":"sender: started","stream_id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:50.6969075+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-29T23:43:51.159134537+05:30","level":"INFO","msg":"stream: closing","id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:51.159168605+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-29T23:43:51.159840942+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-29T23:43:52.712709671+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-29T23:43:53.080044769+05:30","level":"INFO","msg":"handler: closed","stream_id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:53.0800946+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:53.080142506+05:30","level":"INFO","msg":"sender: closed","stream_id":"xm6os1x3"}
+{"time":"2025-01-29T23:43:53.080203003+05:30","level":"INFO","msg":"stream: closed","id":"xm6os1x3"}

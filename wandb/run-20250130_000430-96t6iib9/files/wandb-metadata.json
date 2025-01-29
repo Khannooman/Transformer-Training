@@ -1,0 +1,42 @@
+{
+  "os": "Linux-6.8.0-52-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-01-29T18:34:30.233023Z",
+  "program": "/home/nooman/Documents/Transformer-Training/training.py",
+  "codePath": "training.py",
+  "git": {
+    "remote": "git@github.com:Khannooman/Transformer-Training.git",
+    "commit": "b427f838f7050580507f85a85d784eabde8d81cf"
+  },
+  "email": "nooman@eng.rizvi.edu.in",
+  "root": "/home/nooman/Documents/Transformer-Training",
+  "host": "nvg",
+  "executable": "/home/nooman/Documents/Transformer-Training/env/bin/python",
+  "codePathLocal": "training.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "gpu": "NVIDIA GeForce GTX 1650",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "502392610816",
+      "used": "106997919744"
+    }
+  },
+  "memory": {
+    "total": "8155398144"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce GTX 1650",
+      "memoryTotal": "4294967296",
+      "cudaCores": 896,
+      "architecture": "Turing"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

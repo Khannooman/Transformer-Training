@@ -1,0 +1,15 @@
+{"time":"2025-01-29T23:27:03.528846724+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/nooman/Documents/Transformer-Training/wandb/run-20250129_232703-rbsa1wge/logs/debug-core.log"}
+{"time":"2025-01-29T23:27:03.633991512+05:30","level":"INFO","msg":"created new stream","id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:03.634065733+05:30","level":"INFO","msg":"stream: started","id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:03.634132638+05:30","level":"INFO","msg":"handler: started","stream_id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:03.634136893+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:03.63419036+05:30","level":"INFO","msg":"sender: started","stream_id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:04.152612832+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-29T23:27:08.319278573+05:30","level":"INFO","msg":"stream: closing","id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:08.319315281+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-29T23:27:08.320828093+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-29T23:27:09.394088522+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-29T23:27:09.789359618+05:30","level":"INFO","msg":"handler: closed","stream_id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:09.789383482+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:09.789438051+05:30","level":"INFO","msg":"sender: closed","stream_id":"rbsa1wge"}
+{"time":"2025-01-29T23:27:09.789456503+05:30","level":"INFO","msg":"stream: closed","id":"rbsa1wge"}

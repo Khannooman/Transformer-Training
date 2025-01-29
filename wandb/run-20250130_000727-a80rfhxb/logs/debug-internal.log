@@ -1,0 +1,15 @@
+{"time":"2025-01-30T00:07:27.651562495+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/nooman/Documents/Transformer-Training/wandb/run-20250130_000727-a80rfhxb/logs/debug-core.log"}
+{"time":"2025-01-30T00:07:27.756136627+05:30","level":"INFO","msg":"created new stream","id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:27.756158228+05:30","level":"INFO","msg":"stream: started","id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:27.756171258+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:27.756188655+05:30","level":"INFO","msg":"sender: started","stream_id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:27.756193564+05:30","level":"INFO","msg":"handler: started","stream_id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:28.215067793+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-30T00:07:28.342817477+05:30","level":"INFO","msg":"stream: closing","id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:28.342829775+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-30T00:07:28.343251976+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-30T00:07:30.02981698+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-30T00:07:30.611952614+05:30","level":"INFO","msg":"handler: closed","stream_id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:30.612013138+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:30.612039114+05:30","level":"INFO","msg":"sender: closed","stream_id":"a80rfhxb"}
+{"time":"2025-01-30T00:07:30.612116315+05:30","level":"INFO","msg":"stream: closed","id":"a80rfhxb"}
