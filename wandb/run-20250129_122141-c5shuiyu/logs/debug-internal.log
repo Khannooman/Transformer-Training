@@ -1,0 +1,15 @@
+{"time":"2025-01-29T12:21:41.5068704+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"C:\\Users\\student\\Desktop\\Transformer Training\\wandb\\run-20250129_122141-c5shuiyu\\logs\\debug-core.log"}
+{"time":"2025-01-29T12:21:41.66956+05:30","level":"INFO","msg":"created new stream","id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:41.66956+05:30","level":"INFO","msg":"stream: started","id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:41.66956+05:30","level":"INFO","msg":"handler: started","stream_id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:41.66956+05:30","level":"INFO","msg":"sender: started","stream_id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:41.66956+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:42.0627867+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-29T12:21:47.9173191+05:30","level":"INFO","msg":"stream: closing","id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:47.9173191+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-29T12:21:47.9178237+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-29T12:21:49.1774725+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-29T12:21:49.5278857+05:30","level":"INFO","msg":"handler: closed","stream_id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:49.5278857+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:49.5278857+05:30","level":"INFO","msg":"sender: closed","stream_id":"c5shuiyu"}
+{"time":"2025-01-29T12:21:49.5284335+05:30","level":"INFO","msg":"stream: closed","id":"c5shuiyu"}

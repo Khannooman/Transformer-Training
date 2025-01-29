@@ -1,0 +1,13 @@
+Epoch 1 / 10:   0%|                                                                                                                                                                     | 0/250 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\student\Desktop\Transformer Training\training.py", line 26, in <module>
+    setup_training(data_dir, config)
+  File "C:\Users\student\Desktop\Transformer Training\training.py", line 19, in setup_training
+    trainer.train(train_loader, val_loader)
+  File "C:\Users\student\Desktop\Transformer Training\train.py", line 133, in train
+    batch = {
+            ^
+  File "C:\Users\student\Desktop\Transformer Training\train.py", line 135, in <dictcomp>
+    else torch.tensor(v, dtype=torch.long, device=self.device) if isinstance(v, (int, list))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: only integer tensors of a single element can be converted to an index

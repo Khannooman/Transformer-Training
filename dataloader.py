@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class DataModule():
+class DataModule:
     """Handles data loading, tokenization, and DatLoader Creation"""
 
     def __init__(self, config):
@@ -21,7 +21,7 @@ class DataModule():
         Initialize DataModule with configration
         """
         self.config = config
-        self.tokenizer = Optional[PreTrainedTokenizer] = None
+        self.tokenizer: Optional[PreTrainedTokenizer] = None
 
 
     def load_dataset(self, filepath: Path) -> Dataset:
@@ -73,10 +73,10 @@ class DataModule():
         data_dir = Path(data_dir)
         loaders = []
 
-        for split in ['train', 'val', 'test']:
+        for split in ['train', 'validation', 'test']:
             try:
-                dataset = self.load_dataset(data_dir / split)
-                dataset.map(
+                dataset = self.load_dataset(f"./{data_dir}/{split}")
+                dataset = dataset.map(
                     self.tokenize_data,
                     batched=True,
                     remove_columns=["text"]
@@ -87,13 +87,14 @@ class DataModule():
                     dataset,
                     batch_size = self.config.batch_size,
                     shuffle = split == 'train',
-                    num_workers = self.config.num_workers
+                    num_workers = self.config.num_workers,
+                    multiprocessing_context="spawn"
                 )
-                loaders.apppend(loader)
+                loaders.append(loader)
                 logger.info("Succedully created dataloader")
             
             except Exception as e:
                 logger.error(f"Error creating data loader {split}: {str(e)}")
                 raise
-        return tuple(loader)
+        return tuple(loaders)
     

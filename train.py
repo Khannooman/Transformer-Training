@@ -10,7 +10,8 @@ from tqdm import tqdm
 from pathlib import Path
 import os
 from datetime import datetime
-import json   
+import json
+import numpy as np   
 
 import config
 from model import load_model
@@ -24,6 +25,7 @@ class Trainer(nn.Module):
 
     def __init__(self, config):
         """Initialize the trainer with config"""
+        super().__init__()
         self.config = config
         self.device = torch.device(self.config.device)
         self.model = load_model()
@@ -114,7 +116,7 @@ class Trainer(nn.Module):
                 config={
                     "learning_rate": self.config.learning_rate,
                     "architecture": self.config.model_name,
-                    "dataset": self.config.dataset,
+                    "dataset": self.config.dataset_id,
                     "epochs": self.config.epochs
                 }
             )
@@ -128,7 +130,13 @@ class Trainer(nn.Module):
             progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1} / {self.config.epochs}")
 
             for batch in progress_bar:
-                batch = {k: v.to(self.device) for k, v in batch.items()}
+                print(batch["input_ids"])
+                batch = {
+                        k: v for k, v in batch.items()
+                }
+                print(batch["input_ids"])
+
+                del batch['label']
 
                 optimizer.zero_grad()
                 outputs = self.model(**batch)
@@ -187,16 +195,24 @@ class Trainer(nn.Module):
 
         with torch.no_grad():
             for batch in val_loader:
-                batch = {k : v.to(self.device) for k, v in batch.items()}
+                batch = {
+                        k: v.clone().detach().to(self.device) if isinstance(v, torch.Tensor)
+                        else torch.tensor(v, dtype=torch.long, device=self.device)
+                        if isinstance(v, (list, np.ndarray)) and all(isinstance(i, int) for i in v)
+                        else v  # Keep as-is if not convertible
+                        for k, v in batch.items()
+                }
                 
+                label = batch["label"]
+                del batch["label"]
                 outputs = self.model(**batch)
                 loss = outputs.loss
 
                 val_loss += loss.item()
 
                 prediction = torch.argmax(outputs.logits, dim=1)
-                correct_predictions += (batch["labels"] == prediction).sum().item()
-                total_predictions += batch['labels'].size(0)
+                correct_predictions += (label == prediction).sum().item()
+                total_predictions += label.size(0)
 
         avg_val_loss = val_loss / len(val_loader)
         accuracy = correct_predictions / total_predictions
