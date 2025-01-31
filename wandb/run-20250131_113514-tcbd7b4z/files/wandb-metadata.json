@@ -1,0 +1,30 @@
+{
+  "os": "Windows-10-10.0.22631-SP0",
+  "python": "CPython 3.11.4",
+  "startedAt": "2025-01-31T06:05:15.170351Z",
+  "program": "C:\\Users\\student\\Desktop\\Transformer Training\\training.py",
+  "codePath": "training.py",
+  "git": {
+    "remote": "git@github.com:Khannooman/Transformer-Training.git",
+    "commit": "b427f838f7050580507f85a85d784eabde8d81cf"
+  },
+  "root": "C:\\Users\\student\\Desktop\\Transformer Training",
+  "host": "PC-382",
+  "executable": "c:\\Users\\student\\Desktop\\Transformer Training\\.venv\\Scripts\\python.exe",
+  "codePathLocal": "training.py",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "313735004160",
+      "used": "279981039616"
+    }
+  },
+  "memory": {
+    "total": "16487739392"
+  },
+  "cpu": {
+    "count": 6,
+    "countLogical": 12
+  }
+}

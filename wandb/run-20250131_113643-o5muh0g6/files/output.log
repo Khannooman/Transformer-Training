@@ -1,0 +1,73 @@
+Epoch 1 / 10:   0%|                                                                                                                                                                      | 0/63 [01:20<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\student\Desktop\Transformer Training\training.py", line 23, in <module>
+    setup_training(data_dir, config)
+  File "C:\Users\student\Desktop\Transformer Training\training.py", line 16, in setup_training
+    trainer.train(train_loader, val_loader)
+  File "C:\Users\student\Desktop\Transformer Training\train.py", line 141, in train
+    outputs = self.model(**batch)
+              ^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\models\bert\modeling_bert.py", line 1665, in forward
+    outputs = self.bert(
+              ^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\models\bert\modeling_bert.py", line 1142, in forward
+    encoder_outputs = self.encoder(
+                      ^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\models\bert\modeling_bert.py", line 695, in forward
+    layer_outputs = layer_module(
+                    ^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\models\bert\modeling_bert.py", line 627, in forward
+    layer_output = apply_chunking_to_forward(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\pytorch_utils.py", line 255, in apply_chunking_to_forward
+    return forward_fn(*input_tensors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\models\bert\modeling_bert.py", line 640, in feed_forward_chunk
+    layer_output = self.output(intermediate_output, attention_output)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\transformers\models\bert\modeling_bert.py", line 554, in forward
+    hidden_states = self.LayerNorm(hidden_states + input_tensor)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\modules\normalization.py", line 217, in forward
+    return F.layer_norm(
+           ^^^^^^^^^^^^^
+  File "c:\Users\student\Desktop\Transformer Training\.venv\Lib\site-packages\torch\nn\functional.py", line 2900, in layer_norm
+    return torch.layer_norm(
+           ^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

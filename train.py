@@ -28,7 +28,7 @@ class Trainer(nn.Module):
         super().__init__()
         self.config = config
         self.device = torch.device(self.config.device)
-        self.model = load_model().to(self.device)
+        self.model = load_model()
         logger.info(f"Using device: {self.device}")
 
     def _setup_optimizer(self) -> torch.optim.Optimizer:
