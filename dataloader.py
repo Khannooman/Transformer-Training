@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Tuple, Optional, Dict, Any, Union
 
 import torch    
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
 from transformers import AutoTokenizer, PreTrainedTokenizer
 from  datasets import load_from_disk
 from datasets import Dataset, load_from_disk
@@ -12,17 +12,19 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-class DataModule:
+ 
+class DataModule(Dataset):
     """Handles data loading, tokenization, and DatLoader Creation"""
 
-    def __init__(self, config):
+    def __init__(self, config, part: str):
         """
         Initialize DataModule with configration
         """
         self.config = config
-        self.tokenizer: Optional[PreTrainedTokenizer] = None
-
+        self._data = self.load_dataset(f"{self.config.dataset_dir}/{part}")
+        self.texts = self._data["text"]
+        self.tokenizer = None
+        self._load_tokenizer()
 
     def load_dataset(self, filepath: Path) -> Dataset:
         """Load dataset from disk with error handling"""
@@ -36,63 +38,81 @@ class DataModule:
             raise
 
 
-    def _load_tokenizer(self) -> PreTrainedTokenizer:
+    def _load_tokenizer(self):
         """load the tokenizer from huggingface"""
         try:
             self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
             logger.info(f"Successfully loaded tokenizer for {self.config.model_name}")
-            return self.tokenizer
         except Exception as e:
             logging.error(f"model loading error {str(e)}")
             raise
 
 
-    def tokenize_data(self, batch: Dict[str, Any]) -> Dict[str, torch.Tensor]:
+    def tokenize_data(self,  text: str) -> Dict[str, torch.Tensor]:
         """tokenize text data in batches"""
-        
         if self.tokenizer is None:
-            self.tokenizer = self._load_tokenizer()
-
+          self._load_tokenizer()
+            
         try:
-            return self.tokenizer(
-                batch["text"], 
+            encodings = self.tokenizer(
+                text, 
                 padding="max_length", 
                 truncation=True,
                 max_length=self.config.max_length,
                 return_tensors="pt"
                 )
+            return {
+                'input_ids': encodings['input_ids'].squeeze(0),  # Remove batch dimension
+                'attention_mask': encodings['attention_mask'].squeeze(0)
+                }
         
         except Exception as e:
             logging.error(f"Tokenization failed {str(e)}")
             raise
 
-    def create_dataloaders(self, data_dir: Union[str, Path]) -> Tuple[DataLoader, DataLoader, DataLoader]:
-        """
-        create train, validation, and test DataLoaders 
-        """
-        data_dir = Path(data_dir)
-        loaders = []
-
-        for split in ['train', 'validation', 'test']:
-            try:
-                dataset = self.load_dataset(f"./{data_dir}/{split}")
-                dataset = dataset.map(
-                    self.tokenize_data,
-                    batched=True,
-                    remove_columns=["text"]
-                )
-
-                ### Create loader
-                loader = DataLoader(
-                    dataset,
-                    batch_size = self.config.batch_size,
-                    shuffle = split == 'train'
-                )
-                loaders.append(loader)
-                logger.info("Succedully created dataloader")
-            
-            except Exception as e:
-                logger.error(f"Error creating data loader {split}: {str(e)}")
-                raise
-        return tuple(loaders)
+    def __len__(self):
+        return len(self.texts)
     
+    def __getitem__(self, idx):
+        """Get a single item from the dataset"""
+        try:
+            item = self._data[idx]
+            text = item["text"]
+            label = item["label"]
+            encoding = self.tokenize_data(text)
+            
+            return {
+                'input_ids': encoding['input_ids'],
+                'attention_mask': encoding['attention_mask'],
+                'labels': torch.tensor(label, dtype=torch.long)
+            }
+        except Exception as e:
+            logging.error(f"Error getting item at index {idx}: {str(e)}")
+            raise
+
+
+def create_dataloaders(config) -> Tuple[DataLoader, DataLoader, DataLoader]:
+  """
+  create train, validation, and test DataLoaders 
+  """
+  loaders = []
+
+  for split in ['train', 'validation', 'test']:
+      try:
+          dataset = DataModule(config=config, part=split)
+
+          ### Create loader
+          loader = DataLoader(
+              dataset,
+              batch_size = config.batch_size,
+              shuffle = split == 'train'
+          )
+          loaders.append(loader)
+          logger.info("Succedully created dataloader")
+  
+      except Exception as e:
+          logger.error(f"Error creating data loader {split}: {str(e)}")
+          raise
+  return tuple(loaders)
+
+ 

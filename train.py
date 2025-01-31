@@ -27,8 +27,9 @@ class Trainer(nn.Module):
         """Initialize the trainer with config"""
         super().__init__()
         self.config = config
-        self.device = torch.device(self.config.device)
-        self.model = load_model()
+        self.device = self.config.device
+        self.model = load_model().to(self.device)
+        self.criterion = nn.CrossEntropyLoss()
         logger.info(f"Using device: {self.device}")
 
     def _setup_optimizer(self) -> torch.optim.Optimizer:
@@ -108,7 +109,6 @@ class Trainer(nn.Module):
         optimizer = self._setup_optimizer()
         num_training_steps = len(train_loader) * self.config.epochs
         schedular = self._setup_schedular(optimizer, num_training_steps)
-        criterion = nn.CrossEntropyLoss()
 
         if self.config.use_wandb:
             wandb.init(
@@ -131,17 +131,18 @@ class Trainer(nn.Module):
             progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1} / {self.config.epochs}")
 
             for batch in progress_bar:
-                batch = {k: torch.stack(v).to(self.device) if not isinstance(v, torch.Tensor)
-                         else v
-                         for k, v in batch.items()}
-                batch["labels"] = batch["label"]
-                del batch['label']
+                input_ids = batch['input_ids'].to(self.device)
+                attention_mask = batch['attention_mask'].to(self.device)
+                labels = batch['labels'].to(self.device)
 
                 optimizer.zero_grad()
-                outputs = self.model(**batch)
-                loss = outputs.loss
+                outputs = self.model(
+                  input_ids=input_ids,
+                  attention_mask=attention_mask
+                )
+                logits = outputs.logits
+                loss = self.criterion(logits, labels)
                 loss.backward()
-                torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.config.max_grad_norm)
 
                 optimizer.step()
                 schedular.step()
@@ -193,15 +194,17 @@ class Trainer(nn.Module):
 
         with torch.no_grad():
             for batch in val_loader:
-                batch = {k: torch.stack(v).to(self.device) if not isinstance(v, torch.Tensor)
-                         else v
-                         for k, v in batch.items()}
-                
-                batch["labels"] = batch["label"]
-                del batch["label"]
-                
-                outputs = self.model(**batch)
-                loss = outputs.loss
+                input_ids = batch['input_ids'].to(self.device)
+                attention_mask = batch['attention_mask'].to(self.device)
+                labels = batch['labels'].to(self.device)
+
+                outputs = self.model(
+                  input_ids=input_ids,
+                  attention_mask=attention_mask,
+                  labels=labels
+                )
+                logits = outputs.logits
+                loss = self.criterion(logits, labels)
 
                 val_loss += loss.item()
 
